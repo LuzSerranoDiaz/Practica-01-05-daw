@@ -27,14 +27,11 @@ sudo snap install --classic certbot
 sudo ln -fs /snap/bin/certbot /usr/bin/certbot
 
 #certificado y configuramos el servidor web apache
-sudo certbot --apache
 
-#sudo certbot \
-   # --apache \
-   # -m $CERTIFICATE_EMAIL \
-   # --agree-tos \
-   # --no-eff-email \
-   # -d $CERTIFICATE_DOMAIN \
-  #  --non-interactive
-
-    sudo certbot --apache -m demo@demo.es --agree-tos --no-eff-email -d practica-15.ddns.net --non-interactive
+sudo certbot \
+    --apache \
+    -m $CERTIFICATE_EMAIL \
+    --agree-tos \
+    --no-eff-email \
+    -d $CERTIFICATE_DOMAIN \
+    --non-interactive
