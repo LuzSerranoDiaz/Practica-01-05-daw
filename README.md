@@ -6,11 +6,7 @@
 
 Se crea una instancia de Ubuntu 23.04 con sabor m1.medium para que no haya errores con la memoria ram.
 
-
-
-Se utiliza el par de claves ya utilizado.
-
-
+Se utiliza el par de claves generadas en por aws.
 
 # Documento tecnico practica 1 despliegue de aplicaciones web DAW
 
