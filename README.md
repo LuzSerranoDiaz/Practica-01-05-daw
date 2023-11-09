@@ -64,3 +64,58 @@ En este script se realiza la instalación de LAMP en la última version de **ubu
  ```bash
  sudo ./install_lamp.sh
  ```
+## .nev
+```bash
+# Variables de configuración
+#-----------------------------------------------------------------------
+CERTIFICATE_EMAIL=demo@demo.es
+CERTIFICATE_DOMAIN=practica-15.ddns.net
+#-----------------------------------------------------------------------
+```
+## setup_letsencrypt_certificate.sh
+```bash
+#!/bin/bash
+ 
+# Para mostrar los comandos que se van ejecutando (x) y parar en error(e)
+set -ex
+
+# Actualizamos la lista de repositorios
+ apt update
+# ACtualizamos los paquetes del sistema
+# apt upgrade -y
+source .env
+```
+Se realizan los pasos premeditarios:
+1. Actualizar repositorios
+2. Se importa .env
+```bash
+#instalacion actualizacion snapd
+sudo snap install core; sudo snap refresh core
+
+#Eliminar instalaciones previas
+sudo apt remove certbot
+
+#Instalamos certbot con snpad
+sudo snap install --classic certbot
+
+#Un alias para el comando certbot
+sudo ln -fs /snap/bin/certbot /usr/bin/certbot
+```
+1. Realizamos la instalación y actualización de snapd
+2. Borramos versiones anteriores para que no de error si se tiene que ejecutar más de una vez
+3. Utilizamos snapd para instalar el cliente de certbot
+4. Y le damos un alias o link utilizando el comando `ln`
+```bash
+#certificado y configuramos el servidor web apache
+
+sudo certbot \
+    --apache \
+    -m $CERTIFICATE_EMAIL \
+    --agree-tos \
+    --no-eff-email \
+    -d $CERTIFICATE_DOMAIN \
+    --non-interactive
+```
+Con este comando realizamos el certificado y con estos siguientes parametros automatizamos el proceso:
+* `--apache`bash
+*
